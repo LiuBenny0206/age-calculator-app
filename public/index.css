@@ -47,10 +47,12 @@ body{
     height: 55px;
     border-radius: 5%;
     margin-right: 30px;
-    padding-top: 10px;
     padding-left: 20px;
     border: solid 1px;
-    color: var(--color-Offwhite);
+    border-color: var(--color-Offwhite);
+    font-size: 32px;
+    font-weight: bold;
+
 }
 
 .inputArea input::placeholder{
@@ -59,9 +61,6 @@ body{
     font-size: 28px;
 }
 
-.inputArea input:last-child {
-    margin-right: 0;
-}
 
 .inputArea label{
     font-weight: bold;
