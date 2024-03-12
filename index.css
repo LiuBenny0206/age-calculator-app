@@ -1,0 +1,177 @@
+:root{
+    --color-White: hsl(0, 0%, 100%);
+    --color-Offwhite: hsl(0, 0%, 94%);
+    --color-Smokeygrey: hsl(0, 1%, 44%);
+    --color-Offblack: hsl(0, 0%, 8%);
+    --color-Purple: hsl(259, 100%, 65%);
+    --color-Lightred: hsl(0, 100%, 67%);
+}
+
+
+body{
+    background-color: var(--color-Offwhite);
+    font-family: "Poppins", sans-serif;
+}
+
+
+.mainArea{
+    background-color: var(--color-White);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    height: 600px;
+    width: 800px;
+    border-radius: 5% 5% 30% 5%;
+    padding: 70px 50px;
+    
+}
+.inputArea {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.inputArea p {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--color-Lightred);
+}
+
+.inputArea input{
+    width: 120px;
+    height: 55px;
+    border-radius: 5%;
+    margin-right: 30px;
+    padding-left: 20px;
+    border: solid 1px;
+    border-color: var(--color-Offwhite);
+    font-size: 32px;
+    font-weight: bold;
+
+}
+
+.inputArea input::placeholder{
+    color: var(--color-Smokeygrey);
+    font-weight: bold;
+    font-size: 28px;
+}
+
+
+.inputArea label{
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.dayArea, .monthArea, .yearArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonArea {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonArea button {
+    width: 110px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: var(--color-Purple);
+    border-color: var(--color-Purple);
+}
+
+.buttonArea hr{
+    width: 100%;
+    height: 5%;
+    margin-top: 40px;
+    border-color: var(--color-Offwhite);
+}
+
+
+.buttonArea svg {
+    height: 35px;
+    
+}
+
+.outputArea {
+    height: fit-content;
+    width: fit-content;
+}
+
+.outputArea p {
+    font-size: 98px;
+    font-weight: 1000;
+    font-style: italic;
+    margin: 0px;
+}
+
+.outputArea b {
+    color: var(--color-Purple);
+}
+
+
+
+
+
+.attribution { 
+    font-size: 11px; text-align: center; 
+}
+.attribution a {
+    color: var(--color-Purple);    
+}
+
+@media only screen and (max-width: 510px) {
+    .mainArea {
+        width: 400px;
+        padding: 10px 10px;
+    }
+    .inputArea {
+        justify-content: center;
+        margin-bottom: 80px;
+    }
+    .inputArea input{
+        width: 80px;
+        margin-right: 15px;
+        font-size: 20px;
+    }
+    .inputArea input::placeholder{
+        color: var(--color-Smokeygrey);
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .buttonArea {
+        display: block;
+    }
+    .buttonArea button {
+        position: relative; /* This ensures that positioning of child elements is relative to this one */
+        transform: translate(225%, -60%);
+        z-index: 3; /* This ensures that the button is above the line */
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: var(--color-Purple);
+        border-color: var(--color-Purple);
+    }
+    .buttonArea hr{
+        border-top: 1px solid #ccc;
+        position: relative; /* This ensures that positioning of child elements is relative to this one */
+        z-index: 1; /* This ensures that the line is behind the button */
+        border-color: var(--color-Offwhite);
+    }
+    .buttonArea svg {
+        height: 25px;
+    }
+    .outputArea {
+        padding-left: 20px;
+    }
+    .outputArea p {
+        font-size: 64px;
+        font-weight: 1000;
+        font-style: italic;
+        margin: 0px;
+    }
+}
