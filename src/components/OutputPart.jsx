@@ -1,13 +1,11 @@
 import React from "react";
 
-function OutputPart(props){
-    
-
+function OutputPart({ age }) {
     return (
         <div className="outputArea">
-                <p><b>--</b>years</p>
-                <p><b>--</b>months</p>
-                <p><b>--</b>days</p>
+            <p><b>{age.years || "--"}</b> years</p>
+            <p><b>{age.months || "--"}</b> months</p>
+            <p><b>{age.days || "--"}</b> days</p>
         </div>   
     );
 }

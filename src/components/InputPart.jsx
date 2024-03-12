@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-function InputPart() {
+function InputPart(props) {
     const [dayValue, setDayValue] = useState("");
     const [monthValue, setMonthValue] = useState("");
     const [yearValue, setYearValue] = useState("");
 
     const [error, setError] = useState({ day: false, month: false, year: false });
 
-    const [dayLabelColor, setDayLabelColor] = useState("black");
-    const [monthLabelColor, setMonthLabelColor] = useState("black");
-    const [yearLabelColor, setYearLabelColor] = useState("black");
+    const [dayLabelColor, setDayLabelColor] = useState("hsl(0, 1%, 44%)");
+    const [monthLabelColor, setMonthLabelColor] = useState("hsl(0, 1%, 44%)");
+    const [yearLabelColor, setYearLabelColor] = useState("hsl(0, 1%, 44%)");
 
     const [dayErrorText, setDayErrorText] = useState("This field is required.");
     const [monthErrorText, setMonthErrorText] = useState("This field is required.");
@@ -21,6 +21,39 @@ function InputPart() {
     const [todayYear, setTodayYear] = useState(data.getFullYear());
 
     const [inputColor, setInputColor] = useState("hsl(0, 0%, 94%)");
+
+    function calculateAge(day, month, year) {
+        // 用户输入的日期
+        const userDate = new Date(year, month - 1, day);
+        // 当前日期
+        const currentDate = new Date();
+      
+        // 计算年份差
+        let years = currentDate.getFullYear() - userDate.getFullYear();
+      
+        // 计算月份差
+        let months = currentDate.getMonth() - userDate.getMonth();
+        if (months < 0 || (months === 0 && currentDate.getDate() < userDate.getDate())) {
+          years--;
+          months += 12; // 借年减月
+        }
+      
+        // 计算天数差
+        let days = currentDate.getDate() - userDate.getDate();
+        if (days < 0) {
+          months--;
+          // 获取上个月的天数
+          const lastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+          days += lastMonth.getDate();
+          // 如果月份差成为负数，则借年减月
+          if (months < 0) {
+            years--;
+            months += 12;
+          }
+        }
+      
+        return { years, months, days };
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,9 +73,9 @@ function InputPart() {
             setInputColor("hsl(0, 100%, 67%)");
             setError(emptyErrors);
           } else {
-            setDayLabelColor("black");
-            setMonthLabelColor("black");
-            setYearLabelColor(" black");
+            setDayLabelColor("hsl(0, 1%, 44%)");
+            setMonthLabelColor("hsl(0, 1%, 44%)");
+            setYearLabelColor("hsl(0, 1%, 44%)");
             setInputColor("hsl(0, 0%, 94%)");
             setError(false); // close the error state
           }
@@ -95,10 +128,8 @@ function InputPart() {
 
         // If there are no errors, you can proceed with form submission, API call, etc.
         if (!emptyErrors.day && !emptyErrors.month && !emptyErrors.year && !hasError) {
-            // Submit data
-            console.log(dayValue, monthValue, yearValue);
-            console.log(todayDate, todayMonth, todayYear);
-            console.log("No errors, submit the form");
+            console.log(calculateAge(dayValue, monthValue, yearValue));
+            props.onUserInfo(calculateAge(dayValue, monthValue, yearValue));
         }
     };
 
